@@ -13,9 +13,9 @@ Valid input examples would be:
 - 12:34 + 13:00 + 41:00
 
 Invalid input would be:
-    14 + 10:00 + 10:00
-    10:00 + 14 + 10:00
-    12:30 + 12:30 + 12:30
-    gdgrefer
+- 14 + 10:00 + 10:00
+- 10:00 + 14 + 10:00
+- 12:30 + 12:30 + 12:30
+- gdgrefer
 
 This program can be improved upon by using a vector or an array to store the inputs.

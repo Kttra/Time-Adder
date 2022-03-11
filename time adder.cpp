@@ -43,7 +43,7 @@ vector<int> simpleAdd(vector<int> time, string userInput);
 
 //Main getting input from user
 int main() {
-    std::cout << "Custom program by Killazer. Made to add time for user.\nInput 0 if you want to reset the time.\n" << endl;
+    std::cout << "Custom program by Kttra. Made to add time for user.\nInput 0 if you want to reset the time.\n" << endl;
 
     //Initializing Variables
     vector<int> time = {0,0};

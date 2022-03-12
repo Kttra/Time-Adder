@@ -18,4 +18,4 @@ Invalid input would be:
 - 12:30 + 12:30 + 12:30
 - gdgrefer
 
-This program can be improved upon by using a vector or an array to store the inputs.
+This program can be improved upon by using a vector or an array to store the inputs and then add them up.

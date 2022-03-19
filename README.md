@@ -1,21 +1,55 @@
 # Time Adder
+Purpose of the program is to receive multiple time inputs from the user and add up the time. This is the updated version of time adder v1.0.0. This version can handle unlimited inputs compared to the limited 3 in the previous version.
 
-Purpose of the program is to receive multiple time inputs from the user and add up the time.
+The expected input will be in the format min:sec. For example, "12:34" would be considered valid input.
 
-The expected input will be in the format min:sec.
-For example, "12:34" would be considered valid input.
-
-Valid input examples would be:
+**Valid input examples would be:**
+------------------------------------------------
 - 12+34+54
 - 12:00 + 13
 - 14 + 10:00
 - 11:00
-- 12:34 + 13:00 + 41:00
+- 12:34 + 13:00 + 41:00 + 12:34 + 13:00 + 41:00 + 12:34 + 13:00 + 41:00
+- 1+++15
 
-Invalid input would be:
-- 14 + 10:00 + 10:00
-- 10:00 + 14 + 10:00
-- 12:30 + 12:30 + 12:30
-- gdgrefer
+**Invalid input would be:**
+------------------------------------------------
+- gdgrefer (random letters)
+- 11:11+12:1.....2+11::::10 (A lot of colons or dots)
 
-This program can be improved upon by using a vector or an array to store the inputs and then add them up.
+**Time Adder in Action**
+------------------------------------------------
+```
+Custom program by Kttra. Made to add time for user.
+Input 0 if you want to reset the time.
+
+Enter time (min:sec): 1:30+1:30
+3 mins 0 secs
+
+Enter time (min:sec): 11:11+11:11
+25 mins 22 secs
+
+Enter time (min:sec): 300
+30 mins 22 secs
+
+Enter time (min:sec): 300:00
+5 hrs 30 mins 22 secs
+
+Enter time (min:sec): 0
+Reset time to: 0 mins 0 secs
+
+Enter time (min:sec):
+```
+
+**Additional Notes:**
+------------------------------------------------
+The input ":1" would be considered to be 1 second instead of 10 minutes.
+The reason for this is decision is because "1:" would be considered 1 minute.
+Time inputted without a colon will be considered seconds instead of minutes.
+
+**Version v1.0.0 Limitations**
+------------------------------------------------
+Could not handle more than 3 times. Could not handle inputs that started with a colon. Did not take into account if user inputted multiple colons or dots between a time. Originally the program was made with the thought of only accepting one time, but I decided that was too limiting and changed the project halfway. Because of this, I did not have time to think of inputs such as the ones below. Version 2.0.0 mostly takes from the first version, except I split the user's input and calculate it into the time vector as a substring. Thus, making it more efficient.
+- 12:34 + 13:00 + 41:00 + 12:34
+- 2+11::::10
+- 1+++++++1

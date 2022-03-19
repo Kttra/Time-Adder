@@ -1,5 +1,5 @@
 # Time Adder
-Purpose of the program is to receive multiple time inputs from the user and add up the time. This is the updated version of time adder v1.0.0. This version can handle unlimited inputs compared to the limited 3 in the previous version.
+Purpose of the program is to receive multiple time inputs from the user and add up the time. This is the updated version of time adder v1.0.0. This version can handle unlimited inputs compared to the limited 3 in the previous version. The program converts characters to integers in C++ and then adds the times inputted.
 
 The expected input will be in the format min:sec. For example, "12:34" would be considered valid input.
 

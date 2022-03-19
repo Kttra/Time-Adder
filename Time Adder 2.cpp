@@ -23,9 +23,6 @@
     The input ":1" would be considered to be 1 second instead of 10 minutes.
     The reason for this is decision is because "1:" would be considered 1 minute.
     Time inputted without a colon will be considered seconds instead of minutes.
-    The way the time vector is calculated is different compared to the first
-    version because ver 1 was originally made with the thought of only receiving one
-    input.
 */
 
 #include <iostream> //cout
@@ -37,7 +34,7 @@
 
 //Initializing Functions
 using namespace std;
-vector<int> getInput(int* colonIndex, vector<int> time);
+vector<int> getInput(vector<int> time);
 bool isValid(string userInput);
 void printTime(vector<int> time);
 vector<int> secToMin(vector<int> time);
@@ -51,18 +48,17 @@ int main() {
 
     //Initializing Variables
     vector<int> time = {0,0};
-    int colonIndex = 0;
 
     //Asking for user input over and over
     do{
-        time = getInput(&colonIndex, time);
+        time = getInput(time);
         time = secToMin(time);
         printTime(time);
     }while(true);
 }
 
 //Gets input from the user
-vector<int> getInput(int* colonIndex, vector<int> time){
+vector<int> getInput(vector<int> time){
     string userInput;
 
     std::cout << "Enter time (min:sec): ";
@@ -94,13 +90,15 @@ vector<int> getInput(int* colonIndex, vector<int> time){
 
 //Checks if input is valid.
 bool isValid(string userInput){
+    int length = userInput.length();
+
     //Exits as requested by user
     if(userInput == "quit" || userInput == "q"){
         exit(0);
     }
 
     //Check to see if there's any invalid input
-    for(int i = 0; i < userInput.length(); i++){
+    for(int i = 0; i < length; i++){
         if(userInput[i] == '1' || userInput[i] == '2' || userInput[i] == '3' || userInput[i] == '4' || userInput[i] == '5' ||
            userInput[i] == '6' || userInput[i] == '7' || userInput[i] == '8' || userInput[i] == '9' || userInput[i] == '0'||
            userInput[i] == ':' || userInput[i] == '.' || userInput[i] == '+'){

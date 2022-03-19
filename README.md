@@ -38,6 +38,9 @@ Enter time (min:sec): 300:00
 Enter time (min:sec): 0
 Reset time to: 0 mins 0 secs
 
+Enter time (min:sec): gdgrefer
+Invalid input!
+
 Enter time (min:sec):
 ```
 

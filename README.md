@@ -11,6 +11,8 @@ The expected input will be in the format min:sec. For example, "12:34" would be 
 - 11:00
 - 12:34 + 13:00 + 41:00 + 12:34 + 13:00 + 41:00 + 12:34 + 13:00 + 41:00
 - 1+++15
+- 11:
+- :10
 
 **Invalid input would be:**
 ------------------------------------------------

@@ -50,7 +50,7 @@ Enter time (min:sec):
 ------------------------------------------------
 The input ":1" would be considered to be 1 second instead of 10 minutes.
 The reason for this is decision is because "1:" would be considered 1 minute.
-Time inputted without a colon will be considered seconds instead of minutes.
+Time inputted without a colon will be considered seconds instead of minutes. To clear the console, input "clc" or "clear". This will not reset the time.
 
 **Version v1.0.0 Limitations**
 ------------------------------------------------

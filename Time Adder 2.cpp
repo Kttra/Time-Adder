@@ -23,6 +23,9 @@
     The input ":1" would be considered to be 1 second instead of 10 minutes.
     The reason for this is decision is because "1:" would be considered 1 minute.
     Time inputted without a colon will be considered seconds instead of minutes.
+
+    Update 3/23/2022
+        Added clc/clear command to clear the console (does not use system commands).
 */
 
 #include <iostream> //cout
@@ -31,6 +34,7 @@
 #include <math.h>   //pow
 #include <cctype>
 #include <algorithm> //remove_if
+#include <windows.h> //HANDLE
 
 //Initializing Functions
 using namespace std;
@@ -40,6 +44,7 @@ void printTime(vector<int> time);
 vector<int> secToMin(vector<int> time);
 vector<int> convertTime(vector<int> time, string userInput);
 vector<int> addTime(vector<int> time, string timeToAdd);
+void cls(HANDLE hConsole);
 
 
 //Main getting input from user
@@ -80,6 +85,16 @@ vector<int> getInput(vector<int> time){
     //Returns the time if input is valid, if not, return previous time
     if(validInput){
         time = convertTime(time, userInput);
+        return time;
+    }
+    //Clear the console
+    else if(userInput == "clc" || userInput == "clear"){
+        //Can clear with system command but generally better to not use system commands
+        //cout << string( 100, '\n' ); //system("cls");
+        HANDLE hStdout;
+        hStdout = GetStdHandle(STD_OUTPUT_HANDLE);
+        cls(hStdout);
+
         return time;
     }
     else{
@@ -221,4 +236,39 @@ vector<int> secToMin(vector<int> time){
     time[1] = remainder;
 
     return time;
+}
+
+//Clearing console without system commands
+void cls(HANDLE hConsole){
+   COORD coordScreen = {0, 0};    // home for the cursor
+   DWORD cCharsWritten;
+   CONSOLE_SCREEN_BUFFER_INFO csbi;
+   DWORD dwConSize;
+
+    // Get the number of character cells in the current buffer.
+
+   if(!GetConsoleScreenBufferInfo(hConsole, &csbi))
+      return;
+   dwConSize = csbi.dwSize.X * csbi.dwSize.Y;
+
+   // Fill the entire screen with blanks.
+
+   if(!FillConsoleOutputCharacter(hConsole, (TCHAR) ' ',
+      dwConSize, coordScreen, &cCharsWritten))
+      return;
+
+   // Get the current text attribute.
+
+   if(!GetConsoleScreenBufferInfo( hConsole, &csbi))
+      return;
+
+   // Set the buffer's attributes accordingly.
+
+   if(!FillConsoleOutputAttribute(hConsole, csbi.wAttributes,
+      dwConSize, coordScreen, &cCharsWritten))
+      return;
+
+   // Put the cursor at its home coordinates.
+
+   SetConsoleCursorPosition(hConsole, coordScreen);
 }

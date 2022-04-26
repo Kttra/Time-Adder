@@ -37,22 +37,21 @@
 #include <windows.h> //HANDLE
 
 //Initializing Functions
-using namespace std;
-vector<int> getInput(vector<int> time);
-bool isValid(string userInput);
-void printTime(vector<int> time);
-vector<int> secToMin(vector<int> time);
-vector<int> convertTime(vector<int> time, string userInput);
-vector<int> addTime(vector<int> time, string timeToAdd);
+std::vector<int> getInput(std::vector<int> time);
+bool isValid(std::string userInput);
+void printTime(std::vector<int> time);
+std::vector<int> secToMin(std::vector<int> time);
+std::vector<int> convertTime(std::vector<int> time, std::string userInput);
+std::vector<int> addTime(std::vector<int> time, std::string timeToAdd);
 void cls(HANDLE hConsole);
 
 
 //Main getting input from user
 int main() {
-    std::cout << "Custom program by Kttra. Made to add time for user.\nInput 0 if you want to reset the time.\n" << endl;
+    std::cout << "Custom program by Kttra. Made to add time for user.\nInput 0 if you want to reset the time.\n" << '\n';
 
     //Initializing Variables
-    vector<int> time = {0,0};
+    std::vector<int> time = {0,0};
 
     //Asking for user input over and over
     do{
@@ -63,11 +62,11 @@ int main() {
 }
 
 //Gets input from the user
-vector<int> getInput(vector<int> time){
-    string userInput;
+std::vector<int> getInput(std::vector<int> time){
+    std::string userInput;
 
     std::cout << "Enter time (min:sec): ";
-    getline(cin, userInput);
+    getline(std::cin, userInput);
     //scanf("%02d:%02d", &min, &sec); another way to get input in specific format, but much more limiting
 
     //Remove spaces from user's input
@@ -75,7 +74,7 @@ vector<int> getInput(vector<int> time){
 
     //User's input is 0, return
     if(userInput.length() == 1 && userInput[0] == '0'){
-        cout << "Reset time to: ";
+        std::cout << "Reset time to: ";
         return {0,0};
     }
 
@@ -90,7 +89,6 @@ vector<int> getInput(vector<int> time){
     //Clear the console
     else if(userInput == "clc" || userInput == "clear"){
         //Can clear with system command but generally better to not use system commands
-        //cout << string( 100, '\n' ); //system("cls");
         HANDLE hStdout;
         hStdout = GetStdHandle(STD_OUTPUT_HANDLE);
         cls(hStdout);
@@ -98,13 +96,13 @@ vector<int> getInput(vector<int> time){
         return time;
     }
     else{
-        cout << "Invalid input!" << endl;
+        std::cout << "Invalid input!" << '\n';
         return time;
     }
 }
 
 //Checks if input is valid.
-bool isValid(string userInput){
+bool isValid(std::string userInput){
     int length = userInput.length();
 
     //Exits as requested by user
@@ -115,7 +113,7 @@ bool isValid(string userInput){
     //Check to see if there's any invalid input
     for(int i = 0; i < length; i++){
         if(userInput[i] == '1' || userInput[i] == '2' || userInput[i] == '3' || userInput[i] == '4' || userInput[i] == '5' ||
-           userInput[i] == '6' || userInput[i] == '7' || userInput[i] == '8' || userInput[i] == '9' || userInput[i] == '0'||
+           userInput[i] == '6' || userInput[i] == '7' || userInput[i] == '8' || userInput[i] == '9' || userInput[i] == '0' ||
            userInput[i] == ':' || userInput[i] == '.' || userInput[i] == '+'){
         }
         else{
@@ -128,7 +126,7 @@ bool isValid(string userInput){
 }
 
 //Prints the time, Hours:Minutes:Seconds
-void printTime(vector<int> time){
+void printTime(std::vector<int> time){
     //time/60 = quotient
     //Dividend/divisor - quotient
     int quotient, remainder;
@@ -140,28 +138,29 @@ void printTime(vector<int> time){
 
     //If it is over a hour
     if(quotient > 0){
-        cout << quotient << " hrs " << remainder << " mins " << time[1] << " secs" << endl;
+        std::cout << quotient << " hrs " << remainder << " mins " << time[1] << " secs" << '\n';
     }
     //If it is only a single hour
     else if(quotient == 1){
-        cout << quotient << " hr " << remainder << " mins " << time[1] << " secs" << endl;
+        std::cout << quotient << " hr " << remainder << " mins " << time[1] << " secs" << '\n';
     }
     //If it is 0 hours
     else{
-        cout << time[0] << " mins " << time[1] << " secs" << endl;
+        std::cout << time[0] << " mins " << time[1] << " secs" << '\n';
     }
-    cout << endl;
+    std::cout << '\n';
 }
 
-//Converts userInput to integer form and then adds it up into the time vector
-vector<int> convertTime(vector<int> time, string userInput){
+//Converts userInput to integer form and then adds it up into the time std::vector
+std::vector<int> convertTime(std::vector<int> time, std::string userInput){
     //userInput[i] - '0' <-- quick way to convert character to int
     int index = 0;
-    string timeToAdd;
+    std::string timeToAdd;
     int length = userInput.length();
 
     for(int i = 0; i < length; i++){
         if(userInput[i] == '+'){
+            //Separates the string into parts
             timeToAdd = userInput.substr(index, i-index);
             index = i+1;
             time = addTime(time, timeToAdd);
@@ -174,7 +173,7 @@ vector<int> convertTime(vector<int> time, string userInput){
 }
 
 //Adds the times together one by one
-vector<int> addTime(vector<int> time, string timeToAdd){
+std::vector<int> addTime(std::vector<int> time, std::string timeToAdd){
     int length = timeToAdd.length();
     int colonIndex = -1;
 
@@ -183,7 +182,7 @@ vector<int> addTime(vector<int> time, string timeToAdd){
         if(timeToAdd[i] == ':' || timeToAdd[i] == '.'){
             //There is more than one colon or dot in this time
             if(colonIndex > 0){
-                cout << "Invalid input detected." << endl;
+                std::cout << "Invalid input detected." << '\n';
                 return time;
             }
             colonIndex = i;
@@ -217,7 +216,7 @@ vector<int> addTime(vector<int> time, string timeToAdd){
 }
 
 //Converts the seconds to minutes if the seconds is greater than 60
-vector<int> secToMin(vector<int> time){
+std::vector<int> secToMin(std::vector<int> time){
     //Returns the time if no change is needed
     if(time[1] < 60){
         return time;

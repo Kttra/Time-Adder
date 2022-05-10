@@ -54,7 +54,7 @@ Time inputted without a colon will be considered seconds instead of minutes. To 
 
 **Version v1.0.0 Limitations**
 ------------------------------------------------
-Could not handle more than 3 times. Could not handle inputs that started with a colon. Did not take into account if user inputted multiple colons or dots between a time. Originally the program was made with the thought of only accepting one time, but I decided that was too limiting and changed the project halfway. Because of this, I did not have time to think of inputs such as the ones below. Version 2.0.0 mostly takes from the first version, except I split the user's input and calculate it into the time vector as a substring. Thus, making it more efficient.
+Could not handle more than 3 times. Could not handle inputs that started with a colon. Did not take into account if user inputted multiple colons or dots between a time. Originally the program was made with the thought of only accepting one time, but I decided that was too limiting and changed the project halfway. Because of this, I did not have time to think of inputs such as the ones below. Version 2.0.0 mostly takes from the first version, except I split the user's input and calculate it into the time vector as multiple substrings. Thus, making the data more easy to manage.
 - 12:34 + 13:00 + 41:00 + 12:34
 - 2+11::::10
 - 1+++++++1
